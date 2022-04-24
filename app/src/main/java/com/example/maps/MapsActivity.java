@@ -3,6 +3,7 @@ package com.example.maps;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,16 +40,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng fatima = new LatLng(33.7575566555089, 72.35802567243478);
-        mMap.addMarker(new MarkerOptions().position(fatima).title("Fatima House"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(fatima));
-        mMap.animateCamera(CameraUpdateFactory.zoomIn());
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+    public void ohp(View view)
+    {
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+    }
+    public void onNormalMap(View view)
+    {
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
+    public void onTerrainMap(View view)
+    {
+        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+    }
+    public void onSatelliteMap(View view)
+    {
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+    }
+
+    @Override
+        public void onMapReady (GoogleMap googleMap){
+            mMap = googleMap;
+
+            // Add a marker in Sydney and move the camera
+            LatLng fatima = new LatLng(33.75859567181073, 72.36003797827328);
+            mMap.addMarker(new MarkerOptions().position(fatima).title("Fatima House"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(fatima));
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+
+
+    }
+
+
 }
